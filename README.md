@@ -1,15 +1,17 @@
 # manual-auth
 
-## Preparation
+OAuth2認証を手動でやるためのスクリプト集 (学習用)。
 
-1. Create an auth client at some OpenID site.
-2. Set the redirect URI as `http://localhost:8080` 
-3. Obtain the client ID and client secret.
+## 準備
+
+1. あらかじめテスト用の OIDCクライアントを作成しておく。
+2. Redirect URI は `http://localhost:8080` にする。 
+3. Client ID および client secret を取得し、以下のように環境変数に設定しておく:
 ```shell
 $ export CLIENT_ID=xxx
 $ export CLIENT_SECRET=yyy
 ```
-4. Start the server:
+4. コード受け取り用のサーバを起動しておく:
 ```shell
 $ node ./server.js
 ...
@@ -19,8 +21,8 @@ $ node ./server.js
 
 ```shell
 $ ./clientsecret-auth.sh
-(performs login)
-(copy the code)
+(ログイン実行)
+(codeをコピーする)
 $ ./clientsecret-token.sh code
 ```
 
@@ -31,7 +33,7 @@ $ node ./pkce-generate-challenge.js
 export CODE_CHALLENGE=h3Xmg...
 export CODE_VERIFIER=75f71e039...
 $ ./pkce-auth.sh
-(performs login)
-(copy the code)
+(ログイン実行)
+(codeをコピーする)
 $ ./pkce-token.sh code
 ```
