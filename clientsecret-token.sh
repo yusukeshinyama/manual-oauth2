@@ -1,8 +1,11 @@
 #!/bin/sh
-ENDPOINT='https://oauth2.googleapis.com/token'
 GRANT_TYPE='authorization_code'
 SCOPE='openid%20email'
 REDIRECT_URI='http%3A//localhost:8080'
+if [ ! ${ENDPOINT_TOKEN} ]; then
+  echo "ENDPOINT_TOKEN not set"
+  exit 1
+fi
 if [ ! ${CLIENT_ID} ]; then
   echo "CLIENT_ID not set"
   exit 1
@@ -17,4 +20,4 @@ if [ ! ${CODE} ]; then
   exit 1
 fi
 
-curl -d "code=${CODE}&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&redirect_uri=${REDIRECT_URI}&grant_type=${GRANT_TYPE}" "${ENDPOINT}"
+curl -d "code=${CODE}&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}&redirect_uri=${REDIRECT_URI}&grant_type=${GRANT_TYPE}" "${ENDPOINT_TOKEN}"

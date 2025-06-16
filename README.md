@@ -6,8 +6,10 @@ OAuth2認証を手動でやるためのスクリプト集 (学習用)。
 
 1. あらかじめテスト用の OIDCクライアントを作成しておく。
 2. Redirect URI は `http://localhost:8080` にする。 
-3. Client ID および client secret を取得し、以下のように環境変数に設定しておく:
+3. 各エンドポイント、Client ID および client secret を取得し、以下のように環境変数に設定しておく:
 ```shell
+$ export ENDPOINT_AUTH=https://accounts.google.com/o/oauth2/v2/auth
+$ export ENDPOINT_TOKEN=https://oauth2.googleapis.com/token
 $ export CLIENT_ID=xxx
 $ export CLIENT_SECRET=yyy
 ```
@@ -32,6 +34,7 @@ $ ./clientsecret-token.sh code
 $ node ./pkce-generate-challenge.js
 export CODE_CHALLENGE=h3Xmg...
 export CODE_VERIFIER=75f71e039...
+(challenge, verifierを環境変数に入れておく)
 $ ./pkce-auth.sh
 (ログイン実行)
 (codeをコピーする)
