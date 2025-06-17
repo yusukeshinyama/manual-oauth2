@@ -26,6 +26,26 @@ $ ./clientsecret-auth.sh
 (ログイン実行)
 (codeをコピーする)
 $ ./clientsecret-token.sh code
+{
+  "access_token": "ya29...",
+  "expires_in": 3591,
+  "scope": "openid https://www.googleapis.com/auth/userinfo.email",
+  "token_type": "Bearer",
+  "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjFiY..."
+}
+$ node ./parse-jwt.js eyJhbGciOiJSUzI1NiIsImtpZCI6IjFiY...
+(取得したJWTの中身を確認)
+{
+  iss: 'https://accounts.google.com',
+  azp: '72469...',
+  aud: '72469...',
+  sub: '10483...',
+  email: 'yusuke@bekindlabs',
+  email_verified: true,
+  at_hash: 'DAf6z...',
+  iat: 1750122255,
+  exp: 1750125855
+}
 ```
 
 ## Authorization Code Flow with PKCE
